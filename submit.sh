@@ -1,0 +1,3 @@
+source ../SubmitBot/venv/bin/activate
+python3 ../SubmitBot/submit.py PROJECTNAME FILE1 FILE2 ...
+deactivate
