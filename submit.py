@@ -76,6 +76,9 @@ if len(sys.argv) > 2: #check arguments
         else:
             print("failed to find {}".format(sys.argv[i]))
             sys.exit(1)
+    if (username == '') || (password == ''): #check for username and password
+        print("Please enter your username and password into credentials.py")
+        sys.exit(1)
     bot = SubmitBot()
     bot.login()
     bot.submit(proj, paths)
