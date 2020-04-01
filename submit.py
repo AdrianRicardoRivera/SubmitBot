@@ -10,7 +10,11 @@ class SubmitBot():
         chrome_options = Options()
         chrome_options.add_argument('--headless') #chrome with no window
         #open chrome
-        self.driver = webdriver.Chrome(sys.path[0] + "/venv/bin/chromedriver", options=chrome_options)
+        try:
+            self.driver = webdriver.Chrome(sys.path[0] + "/venv/bin/chromedriver", options=chrome_options)
+        except Exception:
+            print ("Failed to open chrome. Please install Google Chrome.")
+            sys.exit(1)
         self.driver.implicitly_wait(10) #wait 10 seconds before throwing ElementNotFound exception
     def login(self):
         #navigate to gradescope.com
@@ -32,7 +36,7 @@ class SubmitBot():
         #find and click CMSC330
         try:
             course = self.driver.find_element_by_xpath('//*[@href="/courses/85770"]')
-        except:
+        except Exception:
             print("failed to login. Check credentials.py")
             self.driver.close()
             sys.exit(1)
@@ -64,7 +68,7 @@ class SubmitBot():
                     input.send_keys(file_paths[i])
                 upload = self.driver.find_element_by_xpath('/html/body/div[1]/dialog/div/div[2]/form/div[5]/button[1]')
                 upload.click()
-            except:
+            except Exception:
                 print("failed to find {} or it is not accepting submissions".format(sys.argv[1]))
                 self.driver.close()
                 sys.exit(1)
