@@ -18,7 +18,7 @@ Example
 
 ```bash
 source ../SubmitBot/venv/bin/activate
-python3 ../SubmitBot/submit.py P3 src/nfa.ml src/regexp.ml
+../SubmitBot/venv/bin/python3 ../SubmitBot/submit.py P3 src/nfa.ml src/regexp.ml
 deactivate
 ```
 Remember to add your username and password into the credentials.py file.

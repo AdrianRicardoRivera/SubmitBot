@@ -34,6 +34,7 @@ class SubmitBot():
             course = self.driver.find_element_by_xpath('//*[@href="/courses/85770"]')
         except:
             print("failed to login. Check credentials.py")
+            self.driver.close()
             sys.exit(1)
         course.click()
 
@@ -65,6 +66,7 @@ class SubmitBot():
                 upload.click()
             except:
                 print("failed to find {} or it is not accepting submissions".format(sys.argv[1]))
+                self.driver.close()
                 sys.exit(1)
 if len(sys.argv) > 2: #check arguments
     proj = sys.argv[1]
@@ -75,8 +77,9 @@ if len(sys.argv) > 2: #check arguments
             paths.append(path)
         else:
             print("failed to find {}".format(sys.argv[i]))
+            self.driver.exit()
             sys.exit(1)
-    if (username == '') || (password == ''): #check for username and password
+    if (username == '') or (password == ''): #check for username and password
         print("Please enter your username and password into credentials.py")
         sys.exit(1)
     bot = SubmitBot()
